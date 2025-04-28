@@ -7,7 +7,6 @@ winget install neovim --id Neovim.Neovim -s winget
 winget install JanDeDobbeleer.OhMyPosh -s winget
 winget install ntop --id gsass1.NTop -s winget
 winget install wget --id JernejSimoncic.Wget
-winget install wget --id JernejSimoncic.Wget
 
 if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
     Write-Host "🔍 Scoop is NOT installed. Installing now..." -ForegroundColor Yellow
