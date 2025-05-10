@@ -8,6 +8,19 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 winget install ntop --id gsass1.NTop -s winget
 winget install wget --id JernejSimoncic.Wget
 winget install Warp.Warp
+winget install --id WiresharkFoundation.Wireshark -s winget
+winget install --id Microsoft.VisualStudioCode -s winget
+winget install --id Notepad++.Notepad++ -s winget
+winget install --id Postman.Postman -s winget
+winget install --id 7zip.7zip -s winget
+winget install --id GitHub.GitHubDesktop -s winget
+winget install --id OBSProject.OBSStudio -s winget
+winget install --id Telegram.TelegramDesktop -s winget
+winget install --id Microsoft.SQLServerManagementStudio -s winget
+winget install --id Obsidian.Obsidian -s winget
+
+Write-Host "`n🚀 Start Install Visual Studio"
+winget install --id Microsoft.VisualStudio.2022.Community -s winget
 
 if (-Not (Get-Command scoop -ErrorAction SilentlyContinue)) {
     Write-Host "🔍 Scoop is NOT installed. Installing now..." -ForegroundColor Yellow
