@@ -7,7 +7,7 @@ winget install neovim --id Neovim.Neovim -s winget
 winget install JanDeDobbeleer.OhMyPosh -s winget
 winget install ntop --id gsass1.NTop -s winget
 winget install wget --id JernejSimoncic.Wget
-winget install Warp.Warp
+winget install --id VideoLAN.VLC -s winget
 winget install --id WiresharkFoundation.Wireshark -s winget
 winget install --id Microsoft.VisualStudioCode -s winget
 winget install --id Notepad++.Notepad++ -s winget
