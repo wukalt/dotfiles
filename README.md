@@ -36,7 +36,8 @@ The following files **could be deleted or replaced**, so ensure you have a backu
 
 6. Run Installer : 
     ```bash
-    ./install.ps1
+    ./install.ps1     # for Windows
+    bash install.sh   # for Linux 
     ```
 
 ## 🙌 Thanks To
