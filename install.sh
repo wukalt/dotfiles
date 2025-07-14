@@ -9,7 +9,7 @@ sudo apt autoremove -y
 sudo apt install -y obs-studio vim htop lsd bat gh zsh fish vlc python3-pip \
   fonts-firacode git v2ray traceroute whois wireshark net-tools virtualbox docker.io \
   micro wine wine32 wine64 wine64-tools iw wifite aircrack-ng bully hashcat hcxdumptool \
-  hcxtools macchanger nmap curl wget 
+  hcxtools macchanger nmap curl wget tmux pipenv
 
 # Installing apps using snap
 sudo snap install telegram-desktop
@@ -21,6 +21,7 @@ pip3 install django --break-system-packages
 pip3 install requests --break-system-packages 
 pip3 install numpy --break-system-packages
 pip3 install pandas --break-system-packages  
+pip3 install pipenv --break-system-packages  
 
 # Configs
 chsh -s $(which fish)
