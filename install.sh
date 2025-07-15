@@ -18,7 +18,8 @@ echo -e "\t\n Installing apps using APT package manager ...\n\n"
 sudo apt install -y obs-studio vim htop lsd bat gh zsh fish vlc python3-pip \
   fonts-firacode git v2ray traceroute whois wireshark net-tools virtualbox docker.io \
   micro wine wine32 wine64 wine64-tools iw wifite aircrack-ng bully hashcat hcxdumptool \
-  hcxtools macchanger nmap curl wget tmux pipenv ipython3 
+  hcxtools macchanger nmap curl wget tmux pipenv ipython3 build-essential cmake vim-nox python3-dev \
+  mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm python3-venv
 echo -e "${GREEN}\t\n Successful...\n\n"
 
 
