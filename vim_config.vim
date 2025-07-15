@@ -29,6 +29,12 @@ call plug#begin('~/.vim/plugged')
   Plug 'dense-analysis/ale'
 
   Plug 'preservim/nerdtree'
+  
+  Plug 'romainl/Apprentice'
+
+  Plug 'jiangmiao/auto-pairs'
+
+  Plug 'vim-airline/vim-airline'
 
 call plug#end()
 
@@ -86,4 +92,4 @@ set laststatus=2
 
 " }}}
 
-:colorscheme molokai
+colorscheme apprentice
