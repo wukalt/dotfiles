@@ -46,7 +46,7 @@ and for **Linux:**
     ```
 
 
-## 🙌 Thanks To
+## 🔗 Refrence
 
 - **FreeCodeCamp.org** for  vim config file 
     

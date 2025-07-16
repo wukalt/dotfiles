@@ -70,7 +70,8 @@ echo -e "${GREEN}\t\n Successful...\n\n"
 # VIM Config
 echo "\t\n Configure vim...\n\n"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-cp vim_config.vim ~/.vimrc
+cp configs/vim_config.vim ~/.vimrc
+
 
 echo -e "${GREEN}\t\n Successful...\n\n"
 echo "run -> vim :PlugInstall"

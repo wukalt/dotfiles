@@ -65,10 +65,9 @@ Write-Host "`n🚀 Starting Config Vim..." -ForegroundColor Cyan
 New-Item -Path "~\AppData\Local\nvim\" -ItemType Directory -ErrorAction SilentlyContinue
 New-Item -Path "~\AppData\Local\nvim\colors\" -ItemType Directory -ErrorAction SilentlyContinue
 
-Copy-Item -Path ".\vim_config.vim" -Destination "~\AppData\Local\nvim\init.vim" -Force -ErrorAction SilentlyContinue
+Copy-Item -Path "configs\vim_config.vim" -Destination "~\AppData\Local\nvim\init.vim" -Force -ErrorAction SilentlyContinue
 
 curl -o $HOME\AppData\Local\nvim\colors\molokai.vim https://raw.githubusercontent.com/tomasr/molokai/master/colors/molokai.vim
-
 curl -fLo $HOME\AppData\Local\nvim\autoload\plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 Write-Host "`n[✔] Done..." -ForegroundColor Green
@@ -76,13 +75,7 @@ Write-Host "`n[✔] Done..." -ForegroundColor Green
 
 #region Oh-My-Posh Configuration
 
-# Reloading Animation 
-$frames = @('|', '/', '-', '\')
-for ($i = 0; $i -lt 20; $i++) {
-    Write-Host "`rConfiguring Oh-My-Posh... $($frames[$i % $frames.Length])" -NoNewline
-    Start-Sleep -Milliseconds 300
-}
-
+Write-Host "`nConfiguring Oh-My-Posh..."
 New-Item -Path $PROFILE -Type File -Force -ErrorAction SilentlyContinue
 
 $lines = @(
@@ -99,7 +92,7 @@ $lines | Set-Content -Path $PROFILE -ErrorAction SilentlyContinue
 New-Item -Path "~\.config\" -ItemType Directory -ErrorAction SilentlyContinue
 New-Item -Path "~\.config\powershell\" -ItemType Directory -ErrorAction SilentlyContinue
 
-Copy-Item -Path ".\oh_my_posh_theme.json" -Destination "~\.config\powershell\theme.omp.json" -Force -ErrorAction SilentlyContinue
+Copy-Item -Path "configs\oh_my_posh_theme.json" -Destination "~\.config\powershell\theme.omp.json" -Force -ErrorAction SilentlyContinue
 
 Write-Host "`nmake sure you run vim and install the plugins..." -ForegroundColor Yellow
 Write-Host "`n[✔] Done..." -ForegroundColor Green
