@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # == VARS ==
 GREEN='\033[0;32m'
 
@@ -61,11 +60,24 @@ sed -i "plugins=(" ~/.zshrc
 echo "ZSH_THEME=\"powerlevel10k/powerlevel10k\"" >> ~/.zshrc
 echo "plugins=(git zsh-autosuggestions zsh-syntax-highlighting)" >> ~/.zshrc
 
+mkdir -p ~/.tools/lst
+cp lst/* ~/.tools/lst
+
+chmod +x ~/.tools/lst/sys-update.sh
+chmod +x ~/.tools/lst/stools/*.sh
+
 echo "alias ll=\"lsd -l\"" >> ~/.zshrc
 echo "alias g=\"git\"" >> ~/.zshrc
 echo "alias cat=\"batcat\"" >> ~/.zshrc
-echo -e "${GREEN}\t\n Successful...\n\n"
+echo "alias sys-update=\"bash ~/.tools/lst/sys-update.sh\"" >> ~/.zshrc
 
+# FISH Config
+echo "alias ll=\"lsd -l\"" >> ~/.fishrc
+echo "alias g=\"git\"" >> ~/.fishrc
+echo "alias cat=\"batcat\"" >> ~/.fishrc
+echo "alias sys-update=\"bash ~/.tools/lst/sys-update.sh\"" >> ~/.fishrc
+
+echo -e "${GREEN}\t\n Successful...\n\n"
 
 # VIM Config
 echo "\t\n Configure vim...\n\n"
