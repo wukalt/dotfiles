@@ -8,15 +8,17 @@ Always have a **recovery plan** before making changes.
 
 ### 🔥 Files That May Be Removed or Replaced 
 The following files **could be deleted or replaced**, so ensure you have a backup (WINDOWS Devices):
+- `$PROFILE`
+- `$PROFILE.CurrentUserCurrentHost`
 - `C:\Users\YourUsername\.config\`
 - `C:\Users\YourUsername\.config\powershell`
 - `C:\Users\YourUsername\AppData\nvim\*`
-- `$PROFILE`
-- `$PROFILE.CurrentUserCurrentHost`
 
 and for **Linux:**
 - `~/.vimrc`
 - `~/.zshrc`
+- `~/.fishrc`
+- `~/.tools/lst`
 - some **python packages** will installed (if you installed them so **upgraded**)
 
 
@@ -41,8 +43,8 @@ and for **Linux:**
 
 6. Run Installer : 
     ```bash
-    ./install.ps1     # for Windows
-    bash install.sh   # for Linux 
+    ./make-conf.ps1     # for Windows
+    bash make-conf.sh   # for Linux 
     ```
 
 
@@ -56,3 +58,6 @@ and for **Linux:**
 - **Scott Hanselman** for oh-my-posh config file 
 
     link: [my ultimate powershell prompt with oh-my-posh](https://www.hanselman.com/blog/my-ultimate-powershell-prompt-with-oh-my-posh-and-the-windows-terminal)
+
+- **Shecan Service** for free dns(s)
+    link: [shecan.ir](https://shecan.ir)
