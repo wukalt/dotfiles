@@ -70,12 +70,14 @@ echo "alias ll=\"lsd -l\"" >> ~/.zshrc
 echo "alias g=\"git\"" >> ~/.zshrc
 echo "alias cat=\"batcat\"" >> ~/.zshrc
 echo "alias sys-update=\"bash ~/.tools/lst/sys-update.sh\"" >> ~/.zshrc
+echo "alias chdns=\"bash ~/.tools/lst/stools/chdns.sh\""
 
 # FISH Config
 echo "alias ll=\"lsd -l\"" >> ~/.fishrc
 echo "alias g=\"git\"" >> ~/.fishrc
 echo "alias cat=\"batcat\"" >> ~/.fishrc
 echo "alias sys-update=\"bash ~/.tools/lst/sys-update.sh\"" >> ~/.fishrc
+echo "alias chdns=\"bash ~/.tools/lst/stools/chdns.sh\""
 
 echo -e "${GREEN}\t\n Successful...\n\n"
 
