@@ -22,7 +22,7 @@ and for **Linux:**
 - some **python packages** will installed (if you installed them so **upgraded**)
 
 
-**💡 Tip:** To understand how this script works, examine the code. The primary file responsible for modifying files is **`install.ps1`** or **`install.sh`**, so be sure to check the source.
+**💡 Tip:** To understand how this script works, examine the code. The primary file responsible for modifying files is **`make-conf.ps1`** or **`make-conf.sh`**, so be sure to check the source.
 
 # Setup
 
