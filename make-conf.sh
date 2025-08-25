@@ -17,7 +17,7 @@ sudo apt install -y \
   fonts-firacode git v2ray traceroute whois wireshark net-tools virtualbox docker.io \
   micro wine wine32 wine64 wine64-tools iw wifite aircrack-ng bully hashcat hcxdumptool \
   hcxtools macchanger nmap curl wget tmux pipenv ipython3 build-essential cmake vim-nox python3-dev \
-  mono-complete golang nodejs npm openjdk-17-jdk openjdk-17-jre python3-venv
+  mono-complete golang nodejs npm openjdk-17-jdk openjdk-17-jre python3-venv uget
 
 # --- Snap installs ---
 sudo snap install telegram-desktop
