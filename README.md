@@ -17,9 +17,9 @@ The following files **could be deleted or replaced**, so ensure you have a backu
 and for **Linux:**
 - `~/.vimrc`
 - `~/.zshrc`
-- `~/.fishrc`
+- `~/.config/fish/config.fish`
 - `~/.tools/lst`
-- some **python packages** will installed (if you installed them so **upgraded**)
+- Some Python packages may be installed/updated globally (django, requests, pytest, etc... )
 
 
 **💡 Tip:** To understand how this script works, examine the code. The primary file responsible for modifying files is **`make-conf.ps1`** or **`make-conf.sh`**, so be sure to check the source.
