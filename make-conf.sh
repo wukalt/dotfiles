@@ -1,62 +1,80 @@
 #!/bin/bash
 
+set -e
+
+# --- Update & upgrade ---
 sudo apt update
 sudo apt full-upgrade -y
 sudo apt autoremove -y
 
-sudo apt install -y obs-studio vim htop lsd bat gh zsh fish vlc python3-pip \
+# --- Enable 32-bit arch for wine ---
+sudo dpkg --add-architecture i386
+sudo apt update
+
+# --- Install packages ---
+sudo apt install -y \
+  obs-studio vim htop lsd bat gh zsh fish vlc python3-pip \
   fonts-firacode git v2ray traceroute whois wireshark net-tools virtualbox docker.io \
   micro wine wine32 wine64 wine64-tools iw wifite aircrack-ng bully hashcat hcxdumptool \
   hcxtools macchanger nmap curl wget tmux pipenv ipython3 build-essential cmake vim-nox python3-dev \
-  mono-complete golang nodejs openjdk-17-jdk openjdk-17-jre npm python3-venv
+  mono-complete golang nodejs npm openjdk-17-jdk openjdk-17-jre python3-venv
 
-
+# --- Snap installs ---
 sudo snap install telegram-desktop
 sudo snap install code --classic
 
-pip3 install django --break-system-packages
-pip3 install requests --break-system-packages 
-pip3 install numpy --break-system-packages
-pip3 install pandas --break-system-packages  
-pip3 install pipenv --break-system-packages  
-pip3 install pytest --break-system-packages
+# --- Python packages ---
+pip3 install django requests numpy pandas pipenv pytest --break-system-packages
 
-echo "\t\n Configure fish...\n\n"
+# --- Configure fish ---
+echo -e "\n Configuring fish...\n"
+mkdir -p ~/.config/fish
+cat >> ~/.config/fish/config.fish <<EOF
+alias ll="lsd -l"
+alias g="git"
+alias cat="batcat"
+alias sys-update="bash ~/.tools/lst/sys-update.sh"
+alias chdns="bash ~/.tools/lst/stools/chdns.sh"
+EOF
 chsh -s $(which fish)
 sudo chsh -s $(which fish)
 
-echo "\t\n Configure zsh...\n\n"
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
-git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestionsgit 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+# --- Configure zsh ---
+echo -e "\n Configuring zsh...\n"
+export ZSH="$HOME/.oh-my-zsh"
+if [ ! -d "$ZSH" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
 
-sed -i "/ZSH_THEME=/d" ~/.zshrc
-sed -i "plugins=(" ~/.zshrc
+git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k || true
+git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions || true
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting || true
 
-echo "ZSH_THEME=\"powerlevel10k/powerlevel10k\"" >> ~/.zshrc
-echo "plugins=(git zsh-autosuggestions zsh-syntax-highlighting)" >> ~/.zshrc
+sed -i '/^ZSH_THEME=/d' ~/.zshrc
+echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> ~/.zshrc
 
+sed -i '/^plugins=/d' ~/.zshrc
+echo 'plugins=(git zsh-autosuggestions zsh-syntax-highlighting)' >> ~/.zshrc
+
+cat >> ~/.zshrc <<EOF
+alias ll="lsd -l"
+alias g="git"
+alias cat="batcat"
+alias sys-update="bash ~/.tools/lst/sys-update.sh"
+alias chdns="bash ~/.tools/lst/stools/chdns.sh"
+EOF
+
+# --- Custom tools ---
 mkdir -p ~/.tools/lst
 cp -r lst/* ~/.tools/lst/
 chmod +x ~/.tools/lst/sys-update.sh
 chmod +x ~/.tools/lst/stools/*.sh
 
-echo "alias ll=\"lsd -l\"" >> ~/.zshrc
-echo "alias g=\"git\"" >> ~/.zshrc
-echo "alias cat=\"batcat\"" >> ~/.zshrc
-echo "alias sys-update=\"bash ~/.tools/lst/sys-update.sh\"" >> ~/.zshrc
-echo "alias chdns=\"bash ~/.tools/lst/stools/chdns.sh\"" >> ~/.zshrc
-echo "alias ll=\"lsd -l\"" >> ~/.fishrc
-echo "alias g=\"git\"" >> ~/.fishrc
-echo "alias cat=\"batcat\"" >> ~/.fishrc
-echo "alias sys-update=\"bash ~/.tools/lst/sys-update.sh\"" >> ~/.fishrc
-echo "alias chdns=\"bash ~/.tools/lst/stools/chdns.sh\"" >> ~/.fishrc
-
-echo "\t\n Configure vim...\n\n"
+# --- Configure vim ---
+echo -e "\n Configuring vim...\n"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp configs/vim_config.vim ~/.vimrc
 
-echo "run -> vim :PlugInstall"
-echo -e "\t -> Config telegram, v2ray, gh"
-echo -e "\t\n Done.............\n\n"
+echo -e "\n All done ✅"
+echo -e "➡️ Run :PlugInstall inside vim"
+echo -e "➡️ Configure telegram, v2ray, gh manually"
