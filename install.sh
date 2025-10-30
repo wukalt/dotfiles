@@ -71,6 +71,9 @@ if [ "$OS" = "arch" ]; then
       telegram-desktop 
 fi
 
+# Render
+curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
+
 # --- Python packages (common) ---
 echo "🐍 Installing Python packages..."
 pip install django requests numpy pandas pipenv pytest --break-system-packages || true
@@ -79,6 +82,8 @@ pip install django requests numpy pandas pipenv pytest --break-system-packages |
 echo -e "\n📝 Configuring vim...\n"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp configs/vim_config.vim ~/.vimrc 2>/dev/null || true
+
+render login
 
 echo -e "\n✅ All done!"
 echo -e "➡️ Run :PlugInstall inside vim"
