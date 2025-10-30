@@ -3,29 +3,17 @@ filetype on
 filetype plugin on
 filetype indent on
 syntax on
+set background=dark
 set number
 set cursorline
 set cursorcolumn
 set shiftwidth=4
 set tabstop=4
-set expandtab
-set nobackup
-set scrolloff=10
-set nowrap
-set incsearch
-set ignorecase
-set smartcase
-set showcmd
-set showmode
-set showmatch
-set hlsearch
-set history=1000
-set wildmenu
+set history=700
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 call plug#begin('~/.vim/plugged')
-
   Plug 'dense-analysis/ale'
 
   Plug 'preservim/nerdtree'
@@ -35,6 +23,24 @@ call plug#begin('~/.vim/plugged')
   Plug 'jiangmiao/auto-pairs'
 
   Plug 'vim-airline/vim-airline'
+
+  Plug 'ryanoasis/vim-devicons'
+
+  Plug 'davidhalter/jedi-vim'
+
+  Plug 'rust-lang/rust.vim'
+
+  Plug 'ervandew/supertab'
+  
+  Plug 'ctrlpvim/ctrlp.vim'
+
+  Plug 'prabirshrestha/vim-lsp'
+
+  Plug 'scheakur/vim-scheakur'
+
+  Plug 'vim-airline/vim-airline-themes'
+
+  Plug 'cocopon/iceberg.vim'
 
 call plug#end()
 
@@ -49,7 +55,7 @@ nnoremap N Nzz
 
 nnoremap Y y$
 
-nnoremap <f5> :w <CR>:!clear <CR>:!python3 % <CR>
+nnoremap <f5> :w <CR>:!clear <CR>:!cargo run <CR>
 
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -90,6 +96,15 @@ set statusline+=\ %F\ %M\ %Y\ %R
 set statusline+=%=
 set laststatus=2
 
-" }}}
+let g:rust_clip_command = 'xclip -selection clipboard'
 
-colorscheme apprentice
+if executable('rust-analyzer')
+  au User lsp_setup call lsp#register_server({
+        \   'name': 'Rust Language Server',
+        \   'cmd': {server_info->['rust-analyzer']},
+        \   'whitelist': ['rust'],
+        \ })
+endif
+
+let g:airline_theme='simple'
+colorscheme iceberg
