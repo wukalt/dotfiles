@@ -49,7 +49,7 @@ xfce4-mouse-settings
 xfce4-power-manager-settings
 render login
 vim
-gh
+gh auth login
 
 
 rm -rf ~/tmp
