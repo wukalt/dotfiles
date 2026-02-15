@@ -25,7 +25,6 @@ mkdir -p ~/tmp ~/.icons ~/.themes ~/Pictures/Backgrounds ~/Projects ~/.tools
 
 git clone https://github.com/daniruiz/flat-remix.git ~/tmp
 mv ~/tmp/Flat-Remix-Blue-Dark ~/.icons
-curl https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSST19n3y7WbaBEYu5d_f7mit_Z4C9QxLiFvQ&s -o ~/Pictures/Backgrounds/arch.jpeg
 
 curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
 
