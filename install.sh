@@ -1,90 +1,59 @@
 #!/bin/bash
 set -e
 
-# --- Detect OS ---
-if [ -f /etc/debian_version ]; then
-    OS="debian"
-elif [ -f /etc/arch-release ]; then
-    OS="arch"
-else
-    echo "❌ Unsupported distro"
-    exit 1
-fi
+echo -e "🔧 Updating system..."
+sudo apt update
+sudo apt full-upgrade -y
+sudo apt autoremove -y
+sudo dpkg --add-architecture i386
+sudo apt update
 
-echo "➡️ Detected OS: $OS"
+echo "📦 Installing packages..."
+sudo apt install -y \
+  obs-studio vim htop lsd bat gh fish vlc python3-pip code\
+  fonts-firacode git traceroute whois wireshark net-tools virtualbox docker.io \
+  micro wine wine32 wine64 wine64-tools iw wifite aircrack-ng bully hashcat hcxdumptool \
+  hcxtools macchanger nmap curl wget tmux pipenv ipython3 build-essential cmake vim-nox python3-dev \
+  mono-complete golang openjdk-17-jdk openjdk-17-jre python3-venv \
+  libreoffice-impress libreoffice-base libreoffice-draw libreoffice-writer libreoffice-math libreoffice-calc libreoffice-style-colibre \
+  libreoffice-gtk3 arc-themes
 
-# --- Debian/Ubuntu setup ---
-if [ "$OS" = "debian" ]; then
-    echo "🔧 Updating system..."
-    sudo apt update
-    sudo apt full-upgrade -y
-    sudo apt autoremove -y
+sudo snap install telegram-desktop
 
-    # Enable 32-bit arch for wine
-    sudo dpkg --add-architecture i386
-    sudo apt update
 
-    echo "📦 Installing packages..."
-    sudo apt install -y \
-      obs-studio vim htop lsd bat gh zsh fish vlc python3-pip \
-      fonts-firacode git traceroute whois wireshark net-tools virtualbox docker.io \
-      micro wine wine32 wine64 wine64-tools iw wifite aircrack-ng bully hashcat hcxdumptool \
-      hcxtools macchanger nmap curl wget tmux pipenv ipython3 build-essential cmake vim-nox python3-dev \
-      mono-complete golang openjdk-17-jdk openjdk-17-jre python3-venv
+mkdir -p ~/tmp ~/.icons ~/.themes ~/Pictures/Backgrounds ~/Projects ~/.tools
 
-    echo "📦 Installing snaps..."
-    sudo snap install telegram-desktop
-fi
+git clone https://github.com/daniruiz/flat-remix.git ~/tmp
+mv ~/tmp/Flat-Remix-Blue-Dark ~/.icons
+curl https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSST19n3y7WbaBEYu5d_f7mit_Z4C9QxLiFvQ&s -o ~/Pictures/Backgrounds/arch.jpeg
 
-# --- Arch/Manjaro setup ---
-if [ "$OS" = "arch" ]; then
-    echo "🔧 Updating system..."
-    sudo pacman -Syu --noconfirm
-
-    echo "📦 Installing base packages..."
-    sudo pacman -S --noconfirm --needed \
-      base-devel git curl wget htop vim tmux \
-      python python-pip ipython go \
-      jdk17-openjdk jre17-openjdk \
-      docker docker-compose \
-      wireshark-qt net-tools traceroute whois nmap \
-      vlc virtualbox \
-      mono \
-      cmake make gcc \
-      zsh fish \
-      aircrack-ng hashcat macchanger iw \
-      obs-studio uget
-
-    # Install yay if missing
-    if ! command -v yay &> /dev/null; then
-        echo "📦 Installing yay..."
-        git clone https://aur.archlinux.org/yay.git /tmp/yay
-        cd /tmp/yay
-        makepkg -si --noconfirm
-        cd -
-    fi
-
-    echo "📦 Installing AUR packages..."
-    yay -S --noconfirm --needed \
-      lsd bat micro v2ray \
-      wifite hcxtools hcxdumptool bully \
-      telegram-desktop 
-fi
-
-# Render
 curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
 
-# --- Python packages (common) ---
-echo "🐍 Installing Python packages..."
-pip install django requests numpy pandas pipenv pytest --break-system-packages || true
+pip install "fastapi[standard]" django requests pytest --break-system-packages || true
 
-# --- Configure vim ---
-echo -e "\n📝 Configuring vim...\n"
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp configs/vim_config.vim ~/.vimrc 2>/dev/null || true
 
+
+mv configs/chdns.sh ~/.tools
+echo "alias chdns=\"sudo source ~/.tools/chdns.sh\"" >> ~/.fishrc
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+chsh -s $(which fish)
+sudo chsh -s $(which fish)
+
+
+xfwm4-settings
+xfce4-appearance-settings
+xfce4-settings-editor
+xfce4-mouse-settings
+xfce4-power-manager-settings
 render login
+vim
+gh
+
+
+rm -rf ~/tmp
+
 
 echo -e "\n✅ All done!"
-echo -e "➡️ Run :PlugInstall inside vim"
-echo -e "➡️ Configure telegram, v2ray, gh manually"
+echo -e "➡️ Configure telegram, v2ray"
