@@ -9,15 +9,15 @@ Always have a **recovery plan** before making changes.
 ### 🔥 Files That Be Removed or Replaced 
 Linux:
 - `~/.vimrc`
-- Some Python packages may be installed/updated globally (django, requests, pytest, etc... )
+- Some Python packages may be installed/updated globally (requests, pytest, pgadmin4, cookiecutter)
 
 # Setup
 
 Clone then execute.
 
 ```bash
-git clone https://github.com/wukalt/dotfiles.git && \
-cd dotfiles && \
-chmod +x install.sh && \
-./install.sh
+git clone https://github.com/wukalt/dotfiles.git \
+&& cd dotfiles \
+&& chmod +x install.sh \
+&& ./install.sh
 ```
