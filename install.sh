@@ -14,28 +14,28 @@ sudo apt install -y \
   fonts-firacode git traceroute whois wireshark net-tools virtualbox docker.io \
   micro wine wine32 wine64 wine64-tools iw wifite aircrack-ng bully hashcat hcxdumptool \
   hcxtools macchanger nmap curl wget tmux pipenv ipython3 build-essential cmake vim-nox python3-dev \
-  mono-complete golang openjdk-17-jdk openjdk-17-jre python3-venv \
+  mono-complete golang python3-venv \
   libreoffice-impress libreoffice-base libreoffice-draw libreoffice-writer libreoffice-math libreoffice-calc libreoffice-style-colibre \
   libreoffice-gtk3 arc-themes
 
 sudo snap install telegram-desktop
+curl -LsSf https://astral.sh/uv/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
+uv tool install pgadmin4 cookiecutter pytest requests
 
 
 mkdir -p ~/tmp ~/.icons ~/.themes ~/Pictures/Backgrounds ~/Projects ~/.tools
-
 git clone https://github.com/daniruiz/flat-remix.git ~/tmp
 mv ~/tmp/Flat-Remix-Blue-Dark ~/.icons
 
-curl -fsSL https://raw.githubusercontent.com/render-oss/cli/refs/heads/main/bin/install.sh | sh
-
-pip install "fastapi[standard]" django requests pytest --break-system-packages || true
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 cp configs/vim_config.vim ~/.vimrc 2>/dev/null || true
 
 
 mv configs/chdns.sh ~/.tools
-echo "alias chdns=\"sudo source ~/.tools/chdns.sh\"" >> ~/.fishrc
+echo "alias chdns=\"source ~/.tools/chdns.sh\"" >> ~/.fishrc
+
 curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
 chsh -s $(which fish)
 sudo chsh -s $(which fish)
